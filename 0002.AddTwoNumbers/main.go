@@ -23,10 +23,10 @@ import "fmt"
 
 func main() {
 	result := addTwoNumbers(
-			&ListNode{5, nil},
-			&ListNode{5, nil})
-		//&ListNode{2, &ListNode{4, &ListNode{3, nil}}},
-		//&ListNode{5, &ListNode{6, &ListNode{4, nil}}})
+		&ListNode{5, nil},
+		&ListNode{5, nil})
+	//&ListNode{2, &ListNode{4, &ListNode{3, nil}}},
+	//&ListNode{5, &ListNode{6, &ListNode{4, nil}}})
 
 	for i := result; i != nil; i = i.Next {
 		fmt.Println(i.Val)

@@ -81,7 +81,7 @@ func twoSumGo(nums []int, target int) []int {
 	for i, v := range nums {
 		go find(i, v, target, nums[i+1:])
 	}
-	Loop:
+Loop:
 	for {
 		select {
 		case result = <-ch:
