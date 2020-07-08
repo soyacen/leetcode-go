@@ -1,4 +1,9 @@
 package main
+
+import (
+	"fmt"
+)
+
 /**
 
 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
@@ -17,7 +22,7 @@ package main
 输出: 21
 注意:
 
-假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−2^31,  2^31 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/reverse-integer
@@ -26,11 +31,26 @@ package main
 */
 
 func main() {
-	
+	fmt.Println(reverse(123), reverse(123) == 321)
+	fmt.Println(reverse(-123), reverse(-123) == -321)
+	fmt.Println(reverse(120), reverse(120) == 21)
+
 }
 
 func reverse(x int) int {
-
-	
-	return 0
+	MAX := 1<<31 - 1
+	MIN := -1 << 31
+	res := 0
+	for x != 0 {
+		num := x % 10
+		x = x / 10
+		if MAX/10 < res || (MAX/10 == res && MAX%10 < num) {
+			return 0
+		}
+		if MIN/10 > res || (MIN/10 == res && MIN%10 > num) {
+			return 0
+		}
+		res = res*10 + num
+	}
+	return res
 }
