@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /**
 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
 
@@ -51,5 +53,65 @@ p = "mis*is*p*."
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func main() {
-	
+	fmt.Println(isMatch("aa", "a") == false)
+	fmt.Println(isMatch("aa", "a*") == true)
+	fmt.Println(isMatch("ab", ".*") == true)
+	fmt.Println(isMatch("aab", "c*a*b") == true)
+	fmt.Println(isMatch("mississippi", "mis*is*p*.") == false)
+}
+
+func isMatch(s string, p string) bool {
+	if s == "" {
+		return false
+	}
+	if p == "" {
+		return false
+	}
+	seq := []rune(s)
+	pt := []rune(p)
+	ptLen := len(pt)
+	seqLen := len(seq)
+	// isUniq:=true
+	i := 0
+	currIdx := 0
+	for i < ptLen {
+		if i == '.' {
+			if (i+1 == ptLen) || (i+1 < ptLen && pt[i+i] != '*') {
+				i++
+				currIdx++
+				continue
+			}
+			if i+1 < ptLen && pt[i+i] == '*' {
+				i+=2
+				currIdx ++
+				for j := currIdx; j < seqLen; j++ {
+					if seq[currIdx] == seq[currIdx-1] {
+						currIdx ++
+					} else {
+						break
+					}
+				}
+				continue
+			}
+		} else if i >= 'a' && i <= 'z' {
+			if (i+1 == ptLen) || (i+1 < ptLen && pt[i+i] != '*') {
+				if 
+				currIdx++
+				continue
+			}
+			if i+1 < ptLen && pt[i+i] == '*' {
+				currIdx ++
+				for j := currIdx; j < seqLen; j++ {
+					if seq[currIdx] == seq[currIdx-1] {
+						currIdx ++
+					} else {
+						break
+					}
+				}
+				continue
+			}
+		}
+	}
+
+	return false
 }
