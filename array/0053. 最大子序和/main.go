@@ -6,6 +6,7 @@ import (
 
 func main() {
 	fmt.Println(maxSubArray3([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}), maxSubArray3([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}) == 6)
+	fmt.Println(maxSubArray3([]int{-2, 1}), maxSubArray3([]int{-2, 1}) == 1)
 }
 
 /**
@@ -62,7 +63,7 @@ func maxSubArray3(nums []int) int {
 
 func findMax(nums []int, l int, r int) int {
 	if l == r {
-		return nums[0]
+		return nums[l]
 	}
 	// 中心点
 	mid := (l + r) / 2
@@ -73,7 +74,6 @@ func findMax(nums []int, l int, r int) int {
 
 	// 跨中心
 	maxMid := findMaxMid(nums, l, mid, r)
-	fmt.Println(maxMid, l, mid, r)
 	result := maxLeft
 	if result < maxRight {
 		result = maxRight
@@ -81,6 +81,7 @@ func findMax(nums []int, l int, r int) int {
 	if result < maxMid {
 		result = maxMid
 	}
+	fmt.Println(maxLeft, maxRight, maxMid)
 	return result
 }
 
